@@ -108,4 +108,5 @@ public interface ICustomerService : IShopifyService
     /// This list does not appear to be paginated. 
     /// </remarks>
     Task<IEnumerable<Order>> ListOrdersForCustomerAsync(long customerId, CustomerOrderListFilter filter = null, CancellationToken cancellationToken = default);
+
 }

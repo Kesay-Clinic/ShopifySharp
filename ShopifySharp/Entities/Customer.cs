@@ -161,4 +161,13 @@ public class Customer : ShopifyObject
     /// </summary>
     [JsonProperty("email_marketing_consent")]
     public CustomerEmailMarketingConsent EmailMarketingConsent { get; set; }
+
+    /// <summary>
+    /// The customer's password. This is only used when creating or updating a customer.
+    /// </summary>
+    [JsonProperty("password")]
+    public string Password { get; set; } = string.Empty;
+
+    [JsonProperty("password_confirmation")]
+    public string PasswordConfirmation { get; set; } = string.Empty;
 }

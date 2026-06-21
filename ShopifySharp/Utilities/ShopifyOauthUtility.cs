@@ -107,7 +107,7 @@ public interface IShopifyOauthUtility
     Task<AuthorizationResult> RefreshAccessTokenAsync(RefreshAccessTokenOptions options);
 }
 
-public class ShopifyOauthUtility: IShopifyOauthUtility
+public class ShopifyOauthUtility : IShopifyOauthUtility
 {
     private const string AccessTokenPropertyName = "access_token";
     private const string ExpiresInPropertyName = "expires_in";
@@ -242,7 +242,7 @@ public class ShopifyOauthUtility: IShopifyOauthUtility
         {
             Path = "admin/oauth/access_token"
         };
-        using var content = new JsonContent(new { client_id = clientId, client_secret = clientSecret, code });
+        using var content = new JsonContent(new { client_id = clientId, client_secret = clientSecret, grant_type = code });
         using var request = new CloneableRequestMessage(ub.Uri, HttpMethod.Post, content);
 
         return await SendRequestAndParseAuthorizationResultAsync(request);

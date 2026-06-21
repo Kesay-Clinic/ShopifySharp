@@ -20,11 +20,13 @@ namespace ShopifySharp;
 public abstract class ShopifyService : IShopifyService
 {
     public const string REQUEST_HEADER_ACCESS_TOKEN = "X-Shopify-Access-Token";
+    public const string REQUEST_HEADER_STOREFRONT_ACCESS_TOKEN = "X-Shopify-Storefront-Access-Token";
 
     private readonly IShopifyApiVersion? _shopifyApiVersion;
 
     public virtual string APIVersion => _shopifyApiVersion?.Version ?? DefaultShopifyApiVersion.DefaultVersion;
     public virtual bool SupportsAPIVersioning => true;
+    protected virtual string AccessTokenHeaderName => REQUEST_HEADER_ACCESS_TOKEN;
 
     protected Uri _ShopUri { get; set; }
     protected string _AccessToken { get; set; }
@@ -148,7 +150,7 @@ public abstract class ShopifyService : IShopifyService
 
         if (!string.IsNullOrEmpty(_AccessToken))
         {
-            msg.Headers.Add(REQUEST_HEADER_ACCESS_TOKEN, _AccessToken);
+            msg.Headers.Add(AccessTokenHeaderName, _AccessToken);
         }
 
         msg.Headers.Add("Accept", "application/json");

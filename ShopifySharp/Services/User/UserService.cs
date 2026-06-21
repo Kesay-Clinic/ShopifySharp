@@ -19,25 +19,25 @@ public class UserService : ShopifyService, IUserService
     /// <param name="myShopifyUrl">The shop's *.myshopify.com URL.</param>
     /// <param name="shopAccessToken">An API access token for the shop.</param>
     public UserService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken) { }
-    #nullable enable
-    internal UserService(ShopifyApiCredentials shopifyApiCredentials, IShopifyDomainUtility? shopifyDomainUtility = null) : base(shopifyApiCredentials, shopifyDomainUtility) {}
-    internal UserService(ShopifyApiCredentials shopifyApiCredentials, IServiceProvider serviceProvider) : base(shopifyApiCredentials, serviceProvider) {}
-    #nullable restore
-    internal UserService(string shopDomain, string accessToken, IShopifyDomainUtility shopifyDomainUtility) : base(shopDomain, accessToken, shopifyDomainUtility) {}
- 
+#nullable enable
+    internal UserService(ShopifyApiCredentials shopifyApiCredentials, IShopifyDomainUtility? shopifyDomainUtility = null) : base(shopifyApiCredentials, shopifyDomainUtility) { }
+    internal UserService(ShopifyApiCredentials shopifyApiCredentials, IServiceProvider serviceProvider) : base(shopifyApiCredentials, serviceProvider) { }
+#nullable restore
+    internal UserService(string shopDomain, string accessToken, IShopifyDomainUtility shopifyDomainUtility) : base(shopDomain, accessToken, shopifyDomainUtility) { }
+
     /// <inheritdoc />
-    public virtual async Task<ListResult<User>> ListAsync(ListFilter<User> filter = null, CancellationToken cancellationToken = default) =>
+    public virtual async Task<ListResult<UserShopify>> ListAsync(ListFilter<UserShopify> filter = null, CancellationToken cancellationToken = default) =>
         await ExecuteGetListAsync("users.json", "users", filter, cancellationToken);
 
     /// <inheritdoc />
-    public virtual async Task<ListResult<User>> ListAsync(UserListFilter filter, CancellationToken cancellationToken = default) =>
+    public virtual async Task<ListResult<UserShopify>> ListAsync(UserListFilter filter, CancellationToken cancellationToken = default) =>
         await ListAsync(filter?.AsListFilter(), cancellationToken);
 
     /// <inheritdoc />
-    public virtual async Task<User> GetAsync(long userId, CancellationToken cancellationToken = default) =>
-        await ExecuteGetAsync<User>($"users/{userId}.json", "user", cancellationToken: cancellationToken);
+    public virtual async Task<UserShopify> GetAsync(long userId, CancellationToken cancellationToken = default) =>
+        await ExecuteGetAsync<UserShopify>($"users/{userId}.json", "user", cancellationToken: cancellationToken);
 
     /// <inheritdoc />
-    public virtual async Task<User> GetCurrentAsync(CancellationToken cancellationToken = default) =>
-        await ExecuteGetAsync<User>("users/current.json", "user", cancellationToken: cancellationToken);
+    public virtual async Task<UserShopify> GetCurrentAsync(CancellationToken cancellationToken = default) =>
+        await ExecuteGetAsync<UserShopify>("users/current.json", "user", cancellationToken: cancellationToken);
 }

@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 
 namespace ShopifySharp;
 
-public class User : ShopifyObject
+public class UserShopify : ShopifyObject
 {
     /// <summary>
     /// Identifies if the user is the owner of the Shopify account.

@@ -19,12 +19,12 @@ public class CustomerService : ShopifyService, ICustomerService
     /// <param name="myShopifyUrl">The shop's *.myshopify.com URL.</param>
     /// <param name="shopAccessToken">An API access token for the shop.</param>
     public CustomerService(string myShopifyUrl, string shopAccessToken) : base(myShopifyUrl, shopAccessToken) { }
-    #nullable enable
-    internal CustomerService(ShopifyApiCredentials shopifyApiCredentials, IShopifyDomainUtility? shopifyDomainUtility = null) : base(shopifyApiCredentials, shopifyDomainUtility) {}
-    internal CustomerService(ShopifyApiCredentials shopifyApiCredentials, IServiceProvider serviceProvider) : base(shopifyApiCredentials, serviceProvider) {}
-    #nullable restore
-    internal CustomerService(string shopDomain, string accessToken, IShopifyDomainUtility shopifyDomainUtility) : base(shopDomain, accessToken, shopifyDomainUtility) {}
- 
+#nullable enable
+    internal CustomerService(ShopifyApiCredentials shopifyApiCredentials, IShopifyDomainUtility? shopifyDomainUtility = null) : base(shopifyApiCredentials, shopifyDomainUtility) { }
+    internal CustomerService(ShopifyApiCredentials shopifyApiCredentials, IServiceProvider serviceProvider) : base(shopifyApiCredentials, serviceProvider) { }
+#nullable restore
+    internal CustomerService(string shopDomain, string accessToken, IShopifyDomainUtility shopifyDomainUtility) : base(shopDomain, accessToken, shopifyDomainUtility) { }
+
     /// <inheritdoc />
     public virtual async Task<int> CountAsync(CancellationToken cancellationToken = default) =>
         await ExecuteGetAsync<int>($"customers/count.json", "count", cancellationToken: cancellationToken);
@@ -131,4 +131,5 @@ public class CustomerService : ShopifyService, ICustomerService
     {
         return await ExecuteGetAsync<List<Order>>($"customers/{customerId}/orders.json", "orders", filter, cancellationToken);
     }
+
 }

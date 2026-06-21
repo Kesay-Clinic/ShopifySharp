@@ -1,5 +1,5 @@
 namespace ShopifySharp.Filters;
 
-public class UserListFilter : ListFilter<User>
+public class UserListFilter : ListFilter<UserShopify>
 {
 }
