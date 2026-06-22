@@ -5,6 +5,13 @@ namespace ShopifySharp;
 
 public class Collection : ShopifyObject
 {
+
+    /// <summary>
+    /// The collection's unique numeric identifier.
+    /// </summary>
+    [JsonProperty("id")]
+    public string Id { get; set; }
+
     /// <summary>
     /// A description of the collection, complete with HTML markup. Many templates display this on their collection pages. 
     /// </summary>

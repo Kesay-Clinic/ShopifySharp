@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using ShopifySharp.Filters;
@@ -30,4 +31,11 @@ public interface ICollectionService : IShopifyService
     /// <param name="fields">A comma-separated list of fields to return.</param>
     /// <param name="cancellationToken">Cancellation Token</param>
     Task<Collection> GetAsync(long collectionId, string fields = null, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Gets a list of all collections.
+    /// </summary>
+    /// <param name="filter">Options for filtering the result.</param>
+    /// <param name="cancellationToken">Cancellation Token</param>
+    Task<List<Collection>>ListAsync(ListFilter<Collection> filter = default, CancellationToken cancellationToken = default);
 }
