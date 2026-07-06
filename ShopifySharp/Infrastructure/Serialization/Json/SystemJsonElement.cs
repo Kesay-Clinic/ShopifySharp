@@ -68,7 +68,7 @@ internal class SystemJsonElement(JsonElement element, JsonDocument? document = n
 
     public int GetArrayLength() => element.GetArrayLength();
 
-    public int GetPropertyCount() => element.GetPropertyCount();
+    public int GetPropertyCount() => element.EnumerateObject().Count();
 
     public bool ValueEquals(string? text) => element.ValueEquals(text);
 
